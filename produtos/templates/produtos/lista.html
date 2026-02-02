@@ -1,0 +1,37 @@
+{% extends "core/base.html" %}
+
+{% comment %} Aqui vamos mostrar os dados obtidos da view em tela {% endcomment %}
+{% comment %} Os dados vieram diretamente do arquivo VIEW de produtos {% endcomment %}
+
+{% block title %}
+Lista de Produtos
+{% endblock %}
+
+{% block content %}
+<h2>Lista de Produtos</h2>
+
+<table border="1" cellpadding="5">
+    <thead>
+    <tr>
+        <th>Nome</th>
+        <th>Descrição</th>
+        <th>Preço</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    {% for produto in produtos %}
+    <tr>
+        <td>{{ produto.nome }}</td>
+        <td>{{ produto.descricao }}</td>
+        <td>{{ produto.preco }}</td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="3">Nenhum produto encontrado.</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

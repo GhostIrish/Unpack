@@ -1,5 +1,6 @@
 from django.db import models
 
+# aqui definimos o modelo Produto com seus respectivos campos no banco de dados.
 class Produto(models.Model):
     nome = models.CharField(max_length=100)
     descricao = models.TextField(blank=True)
