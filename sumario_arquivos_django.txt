@@ -1,0 +1,23 @@
+Por padrão o django ao criar o projeto, ja vem com as pastas:
+__init__.py (pasta do projeto)
+asgi.py (pasta do projeto)
+settings.py (pasta do projeto)
+urls.py (pasta do projeto)
+wsgi.py (pasta do projeto)
+manage.py (pasta raiz) 
+(Para esse projeto 'project_2026_1' foi configurado desta maneira)
+
+Onde:
+asgi -> Permite que o Django realize algumas tarefas de forma ASSÍNCRONA, incluindo conectar seu código Python nos servidores,
+facilitando a subida de sua aplicação.
+
+settings -> todas as configurações do projeto são mantidas nesse arquivo(é possível modularizar posteriormente)
+(Ex do que é configurado: Acesso a banco de dados, conexão com middlewares e etc)
+
+urls -> todas as rotas que serão utilizadas no projeto ficam nesse arquivo.
+(Ex: Rota de direcionamento ao clicar em um botão.)
+
+wsgi -> Permite que o Django realize algumas tarefas de forma SÍNCRONA, incluindo conectar seu código Python nos servidores,
+facilitando a subida de sua aplicação.
+
+manage -> onde serão executadas as coisas do projeto, possívelmente o orquestrador.
