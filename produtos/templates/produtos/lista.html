@@ -16,6 +16,7 @@ Lista de Produtos
         <th>Nome</th>
         <th>Descrição</th>
         <th>Preço</th>
+        <th>Ativo</th>
     </tr>
     </thead>
 
@@ -24,7 +25,13 @@ Lista de Produtos
     <tr>
         <td>{{ produto.nome }}</td>
         <td>{{ produto.descricao }}</td>
-        <td>{{ produto.preco }}</td>
+        <td>R${{ produto.preco }}</td>
+        <td>
+            {% if produto.ativo %}
+                Sim
+            {% else %}
+                Não
+            {% endif %}
     </tr>
     {% empty %}
     <tr>
