@@ -18,9 +18,25 @@
     <footer>
         <p>&copy; 2026 Sistema de Gestão. Todos os direitos reservados.</p>
     </footer>
+    <nav>
+
+    {% if user.is_authenticated %}
+        <span>Olá, {{ user.username }}</span>
+
+        <form method="post" action="{% url 'logout' %}" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit">Sair</button>
+        </form>
+
+    {% else %}
+        <span>Olá, Visitante, por favor faça, </span>
+        <a href="{% url 'login' %}">Login</a>
+    {% endif %}
+</nav>
 </body>
 <button onclick="window.location.href='/admin/'" id="myBtn" title="Go to admin page">Admin</button>
 <button onclick="window.location.href='/produtos/'" id="myBtn" title="View products">Produtos</button>
 <button onclick="window.location.href='/'" id="myBtn" title="Go to home page">Home</button>
 <button onclick="window.location.href='/produtos/cadastrar/'" id="myBtn" title="Adding new product">Cadastrar Produto</button>
+
 </html>
