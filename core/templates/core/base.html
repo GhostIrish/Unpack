@@ -1,42 +1,70 @@
 <!DOCTYPE html>
-<html lang="pt-br">   
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>{% block title %}Sistema de Gestão{% endblock %}</title>
-    {% comment %} <link rel="stylesheet" href="{% static 'core/styles.css' %}"> {% endcomment %}
 </head>
-<body>
-    <header>
-        <h1>Sistema de Gestão</h1>
-    </header>
-    <main>
-        {% block content %}
-        <!-- Conteúdo específico da página será inserido aqui -->
-        {% endblock %}
-    </main>
-    <footer>
-        <p>&copy; 2026 Sistema de Gestão. Todos os direitos reservados.</p>
-    </footer>
-    <nav>
 
+<body class="d-flex flex-column min-vh-100">
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+
+            <a class="navbar-brand" href="/">Sistema de Gestão</a>
+
+            <div class="ms-auto">
+
+                {% if user.is_authenticated %}
+                    <span class="text-white me-3">Olá, {{ user.username }}</span>
+
+                    <form method="post" action="{% url 'logout' %}" class="d-inline">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-outline-light btn-sm">Sair</button>
+                    </form>
+                {% else %}
+                    <a href="{% url 'login' %}" class="btn btn-outline-light btn-sm">Login</a>
+                {% endif %}
+
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- MENU PRINCIPAL -->
     {% if user.is_authenticated %}
-        <span>Olá, {{ user.username }}</span>
-
-        <form method="post" action="{% url 'logout' %}" style="display:inline;">
-            {% csrf_token %}
-            <button type="submit">Sair</button>
-        </form>
-
-    {% else %}
-        <span>Olá, Visitante, por favor faça, </span>
-        <a href="{% url 'login' %}">Login</a>
+    <div class="bg-light py-2 border-bottom">
+        <div class="container d-flex gap-2">
+            <a class="btn btn-primary btn-sm" href="/admin/">Admin</a>
+            <a class="btn btn-primary btn-sm" href="/produtos/">Produtos</a>
+            <a class="btn btn-primary btn-sm" href="/">Home</a>
+            <a class="btn btn-success btn-sm" href="/produtos/cadastrar/">Cadastrar Produto</a>
+        </div>
+    </div>
     {% endif %}
-</nav>
-</body>
-<button onclick="window.location.href='/admin/'" id="myBtn" title="Go to admin page">Admin</button>
-<button onclick="window.location.href='/produtos/'" id="myBtn" title="View products">Produtos</button>
-<button onclick="window.location.href='/'" id="myBtn" title="Go to home page">Home</button>
-<button onclick="window.location.href='/produtos/cadastrar/'" id="myBtn" title="Adding new product">Cadastrar Produto</button>
 
+
+    <!-- CONTEÚDO -->
+    <main class="flex-fill">
+        <div class="container my-4">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="bg-dark text-white text-center py-3 mt-auto">
+        <div class="container">
+            &copy; 2026 Sistema de Gestão. Todos os direitos reservados.
+        </div>
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
 </html>
